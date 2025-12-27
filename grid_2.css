@@ -1,0 +1,650 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+    font-family: 'Poppins', sans-serif;
+    background-color: #f8f8f8;
+}
+
+html{
+    scroll-behavior: smooth;
+}
+
+#main {
+    height: 100vh;
+    width: 100%;
+    display: grid;
+    /* Responsive Grid: Changes to 1 column on mobile automatically */
+    grid-template-columns: 25% 25% 50%;
+    grid-template-rows: auto 1fr auto;
+}
+
+/* --- Layout Sections --- */
+
+#left-top-left {
+    padding: 40px;
+    display: flex;
+    align-items: flex-start;
+}
+
+#square {
+    height: 25px;
+    width: 25px;
+    rotate: 45deg;
+    background-color: #1a1a1a;
+}
+
+#left-top-right {
+    padding: 40px;
+    text-align: right;
+}
+
+#left-top-right h4 {
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+#left-top-right h5 {
+    margin: 6px 0;
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: #555;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+#left-top-right h5:hover {
+    color: orangered;
+}
+
+#left-center {
+    grid-column: 1 / 3;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 40px;
+}
+
+#left-center h1 {
+    font-size: 7vw; /* Dynamic sizing */
+    text-transform: uppercase;
+    font-weight: 600;
+    line-height: 1;
+    font-family: 'Old Standard TT', serif;
+}
+
+#left-center h1:nth-child(even) {
+    align-self: center;
+    font-style: italic;
+    font-family: 'Satisfy', cursive;
+    text-transform: capitalize;
+    color: #333;
+}
+
+#left-bottom {
+    grid-column: 1 / 3;
+    padding: 40px;
+}
+
+#left-bottom p {
+    width: 80%;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: #666;
+}
+
+#right {
+    grid-column: 3;
+    grid-row: 1 / 4;
+    padding: 30px;
+    padding-right: 80px;
+    padding-bottom: 30px;
+    position: relative;
+}
+
+#right video {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+
+/* --- Floating Button --- */
+#arrow {
+    position: absolute;
+    top: 50%;
+    left: 50%; /* Adjusted for better visual balance */
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: orangered;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    color: #fff;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+}
+
+#arrow:hover, #arrow:focus {
+    transform: translate(-50%, -50%) scale(1.08);
+    background-color: #ff4500;
+    outline: none;
+}
+
+#arrow i {
+    font-size: 50px;
+    font-weight: 200;
+}
+
+/* --- MEDIA QUERIES (Mobile Responsiveness) --- */
+
+@media (max-width: 900px) {
+    #main {
+        grid-template-columns: 1fr; /* Stack everything in 1 column */
+        grid-template-rows: auto auto auto auto;
+        height: auto;
+    }
+
+    #left-top-left, #left-top-right {
+        grid-column: 1;
+        padding: 20px;
+    }
+
+    #left-top-right {
+        text-align: left;
+    }
+
+    #left-center {
+        grid-column: 1;
+        padding: 40px 20px;
+    }
+
+    #left-center h1 {
+        font-size: 12vw; /* Larger font for small screens */
+    }
+
+    #left-bottom {
+        grid-column: 1;
+        padding: 20px;
+    }
+
+    #left-bottom p {
+        width: 100%;
+    }
+
+    #right {
+        grid-column: 1;
+        grid-row: auto;
+        height: 60vh; /* Give video a fixed height on mobile */
+        padding: 20px;
+    }
+
+    #arrow {
+        left: 50%;
+        top: 85%; /* Move arrow to bottom area on mobile */
+        width: 60px;
+        height: 60px;
+    }
+}
+
+/* 1. Define the Keyframes */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* 2. Apply to Elements */
+
+/* The headings appear one by one */
+#left-center h1 {
+    animation: fadeInUp 0.8s ease-out forwards;
+    opacity: 0; /* Hidden initially */
+}
+
+#left-center h1:nth-child(1) { animation-delay: 0.2s; }
+#left-center h1:nth-child(2) { animation-delay: 0.4s; }
+#left-center h1:nth-child(3) { animation-delay: 0.6s; }
+#left-center h1:nth-child(4) { animation-delay: 0.8s; }
+
+/* The menu and logo slide in */
+#left-top-left, #left-top-right {
+    animation: fadeInUp 0.8s ease-out forwards;
+    animation-delay: 1s;
+    opacity: 0;
+}
+
+/* The paragraph description */
+#left-bottom p {
+    animation: fadeInUp 0.8s ease-out forwards;
+    animation-delay: 1.2s;
+    opacity: 0;
+}
+
+/* The video box scales up slightly */
+#right {
+    animation: scaleIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    opacity: 0;
+}
+
+/* The orange arrow pops in last */
+#arrow {
+    animation: scaleIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    animation-delay: 1.5s;
+    opacity: 0;
+}
+
+/*////////////////////////////////////////*/
+
+
+/* Section Styling */
+section {
+    min-height: 100vh;
+    width: 100%;
+    padding: 80px 5%;
+    background-color: #fff;
+}
+
+.section-title {
+    margin-bottom: 60px;
+}
+
+.section-title h2 {
+    font-family: 'Old Standard TT', serif;
+    font-size: 4rem;
+    text-transform: uppercase;
+}
+
+.section-title span {
+    font-family: 'Satisfy', cursive;
+    color: orangered;
+    font-size: 1.5rem;
+}
+
+/* Portfolio Masonry-style Grid */
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.port-item {
+    height: 450px;
+    overflow: hidden;
+    background-color: #f0f0f0;
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.35s cubic-bezier(0.19, 1, 0.22, 1), box-shadow 0.3s ease;
+}
+
+.port-item:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+}
+
+.port-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.port-item:hover img {
+    transform: scale(1.1);
+}
+
+/* Contact/Footer Section Look */
+#contact {
+    background-color: #1a1a1a;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+#contact h2 {
+    font-size: 8vw;
+    font-family: 'Old Standard TT';
+    margin-bottom: 20px;
+}
+
+/* Clean Links */
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.25s ease, transform 0.15s ease;
+}
+a:hover { color: orangered; transform: translateY(-2px); }
+
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+    .section-title h2 { font-size: 2.5rem; }
+    .port-item { height: 350px; }
+}
+
+/* Contact Section Layout */
+.contact-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 100px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.contact-info h2 {
+    font-family: 'Old Standard TT', serif;
+    font-size: 5rem;
+    line-height: 0.9;
+    margin-bottom: 30px;
+}
+
+.contact-details {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    font-size: 0.8rem;
+}
+
+/* Floating Label Logic */
+.input-group {
+    position: relative;
+    margin-bottom: 40px;
+}
+
+.input-group input, 
+.input-group textarea {
+    width: 100%;
+    padding: 10px 0;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    background: transparent;
+    outline: none;
+    font-size: 1rem;
+    font-family: 'Poppins', sans-serif;
+    transition: border-color 0.3s;
+}
+
+.input-group label {
+    position: absolute;
+    left: 0;
+    top: 10px;
+    color: #999;
+    pointer-events: none;
+    transition: 0.3s all ease;
+}
+
+/* This moves the label up when focused or when text is entered */
+.input-group input:focus ~ label,
+.input-group input:valid ~ label,
+.input-group textarea:focus ~ label,
+.input-group textarea:valid ~ label {
+    top: -20px;
+    font-size: 0.75rem;
+    color: orangered;
+    font-weight: 700;
+}
+
+.input-group input:focus, 
+.input-group textarea:focus {
+    border-bottom: 2px solid #000;
+}
+
+.submit-btn {
+    background: #000;
+    color: #fff;
+    padding: 20px 40px;
+    border: none;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.submit-btn:hover {
+    background: orangered;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 900px) {
+    .contact-container {
+        grid-template-columns: 1fr;
+        gap: 50px;
+    }
+    .contact-info h2 { font-size: 3rem; }
+}
+
+/* Default state (Squares) */
+.particle {
+    position: fixed;
+    width: 8px;
+    height: 8px;
+    pointer-events: none;
+    z-index: 9998;
+    transition: transform 0.8s ease-out, opacity 0.8s ease-out;
+}
+
+/* Shape Variations */
+.particle.circle { border-radius: 50%; }
+.particle.triangle {
+    width: 0;
+    height: 0;
+    background-color: transparent !important; /* Triangle uses borders */
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 10px solid; /* Color will be applied here */
+}
+
+#music-toggle {
+    position: fixed;
+    bottom: 40px;
+    left: 40px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    z-index: 10000;
+    cursor: pointer;
+    padding: 10px;
+    background: rgba(255,255,255,0.9);
+    border-radius: 40px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+}
+
+.bar {
+    width: 3px;
+    height: 15px;
+    background-color: #000;
+    transition: height 0.3s ease;
+}
+
+.music-text {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 700;
+    font-family: 'Poppins', sans-serif;
+    color: #000;
+}
+
+/* Animation class when music is playing */
+.playing .bar {
+    animation: soundWave 0.6s infinite alternate;
+}
+
+.playing .bar:nth-child(2) { animation-delay: 0.2s; }
+.playing .bar:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes soundWave {
+    0% { height: 5px; }
+    100% { height: 20px; }
+}
+
+/* Dark mode adjustment for contact section */
+.dark-zone #music-toggle .bar,
+.dark-zone #music-toggle .music-text {
+    background-color: #fff;
+    color: #fff;
+}
+
+#fluid {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1; 
+    pointer-events: none;
+    /* This makes the colors "pop" against the white sections */
+    mix-blend-mode: multiply; 
+    opacity: 0.8;
+}
+
+/* ---------- New: Custom Animated Cursor & Micro-interactions ---------- */
+
+/* Base hidden state for cursor in reduced-motion or no-JS */
+.reduced-motion .cursor-dot,
+.reduced-motion .cursor-outline {
+    display: none !important;
+}
+
+/* Hide native cursor sitewide (but allow text caret for inputs) */
+body:not(.cursor-hidden) {
+    cursor: none;
+}
+
+/* Keep native cursor for text inputs & contenteditable areas */
+input, textarea, select, [contenteditable="true"] {
+    cursor: text !important;
+}
+
+/* The small fast dot */
+.cursor-dot {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 10px;
+    height: 10px;
+    background: #111;
+    border-radius: 50%;
+    transform: translate3d(-50%, -50%, 0);
+    z-index: 100000;
+    pointer-events: none;
+    transition: background-color 160ms ease, transform 120ms ease;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.18);
+}
+
+/* The lagging outline */
+.cursor-outline {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: 2px solid rgba(0,0,0,0.75);
+    transform: translate3d(-50%, -50%, 0);
+    z-index: 99999;
+    pointer-events: none;
+    transition: width 220ms cubic-bezier(.2,.8,.2,1), height 220ms cubic-bezier(.2,.8,.2,1),
+                border-color 200ms ease, background-color 200ms ease, opacity 200ms ease;
+    mix-blend-mode: normal;
+    will-change: transform;
+}
+
+/* Hover / interactive state: enlarge, change color */
+body.cursor-hover .cursor-dot {
+    transform: translate3d(-50%, -50%, 0) scale(1.9);
+    background: orangered;
+    box-shadow: 0 14px 30px rgba(255,69,0,0.18);
+}
+
+body.cursor-hover .cursor-outline {
+    width: 56px;
+    height: 56px;
+    border-color: rgba(255,69,0,0.95);
+    background: rgba(255,69,0,0.06);
+}
+
+/* Click feedback */
+.cursor-dot.cursor-click {
+    transform: translate3d(-50%, -50%, 0) scale(0.8);
+    transition: transform 120ms cubic-bezier(.3,.7,.2,1);
+}
+.cursor-outline.cursor-click-outline {
+    transform: translate3d(-50%, -50%, 0) scale(0.92);
+    transition: transform 160ms cubic-bezier(.3,.7,.2,1);
+}
+
+/* When we hide custom cursor (e.g., input focus) */
+body.cursor-hidden .cursor-dot,
+body.cursor-hidden .cursor-outline {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Keyboard focus visible state (for better accessibility) */
+.show-focus :focus {
+    outline: 3px solid rgba(255,69,0,0.14);
+    outline-offset: 3px;
+}
+
+/* Small micro-interaction improvements for controls */
+button, .submit-btn, #arrow {
+    transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
+}
+button:active, .submit-btn:active, #arrow:active { transform: translateY(1px) scale(0.997); }
+
+/* selection color */
+::selection {
+    background: orangered;
+    color: white;
+}
+
+/* Respect reduced motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+    .cursor-dot, .cursor-outline { display: none !important; }
+    * { scroll-behavior: auto; transition: none !important; animation: none !important; }
+}
+
+/* small responsive adjustments to keep cursor in UI priority on small screens */
+@media (max-width: 600px) {
+    .cursor-outline { display: none; } /* hide outline on small screens to avoid occlusion */
+}
+
+/* end of custom cursor & micro interaction styles */

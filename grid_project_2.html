@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="grid_2.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.7.0/fonts/remixicon.css" rel="stylesheet"/>
+    <canvas id="fluid"></canvas>
+</head>
+<body>
+    <section id="home">
+        <div id="main">
+            <div id="left-top-left"><div id="square"></div></div>
+            <div id="left-top-right">
+                <h4 class="Menu">Menu</h4>
+                <h5><a href="#home">Home Page</a></h5>
+                <h5><a href="#portfolio">Portfolio</a></h5>
+                <h5><a href="#fashion-week">Fashion Week</a></h5>
+                <h5><a href="#news">News/Articles</a></h5>
+                <h5><a href="#contact">Contact</a></h5>
+            </div>
+            <div id="left-center">
+                <h1>Select</h1><h1>Fashion</h1><h1>Mod.05 -</h1><h1>Scene</h1>
+            </div>
+            <div id="left-bottom">
+                <p>Redefining the boundaries of modern couture through digital storytelling and minimalist aesthetics.</p>
+            </div>
+            <div id="right">
+                <video autoplay loop muted src="./pin_man_model.mp4"></video>
+            </div>
+            <div id="arrow" role="button" aria-label="Next section" tabindex="0">
+                <i class="ri-arrow-right-long-line"></i>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio">
+        <div class="section-title">
+            <h2>Portfolio</h2>
+            <span>Featured Works 2024/25</span>
+        </div>
+        <div class="portfolio-grid">
+            <div class="port-item"><img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=600" alt="Fashion 1"></div>
+            <div class="port-item"><img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=600" alt="Fashion 2"></div>
+            <div class="port-item"><img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=600" alt="Fashion 3"></div>
+            <div class="port-item"><img src="https://images.unsplash.com/photo-1467043237213-65f2da53396f?auto=format&fit=crop&w=600" alt="Fashion 4"></div>
+        </div>
+    </section>
+
+    <script>
+        // 1. Change Menu style on scroll
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('#left-top-right');
+            if (window.scrollY > 50) {
+                header.style.background = "rgba(255, 255, 255, 0.9)";
+                header.style.backdropFilter = "blur(10px)";
+            } else {
+                header.style.background = "transparent";
+            }
+        });
+
+        // 2. Reveal Sections on Scroll
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = "1";
+                    entry.target.style.transform = "translateY(0)";
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section').forEach(section => {
+            section.style.opacity = "0";
+            section.style.transform = "translateY(50px)";
+            section.style.transition = "all 1s ease-out";
+            observer.observe(section);
+        });
+    </script>
+
+    <section id="fashion-week" style="display: flex; align-items: center; flex-wrap: wrap;">
+        <div style="flex: 1; min-width: 300px; padding: 40px;">
+            <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=800" alt="Fashion Week" style="width: 100%; border-radius: 4px;">
+        </div>
+        <div style="flex: 1; min-width: 300px; padding: 40px;">
+            <span style="color: orangered; text-transform: uppercase; letter-spacing: 3px;">Archive 2021</span>
+            <h2 style="font-family: 'Old Standard TT'; font-size: 3rem; margin: 20px 0;">The Milan <br>Collection</h2>
+            <p style="color: #666; line-height: 1.8; margin-bottom: 20px;">Exploring the intersection of classic tailoring and futuristic silhouettes. The 2021 collection remains a cornerstone of our design philosophy.</p>
+            <button style="padding: 15px 30px; background: black; color: white; border: none; cursor: pointer; text-transform: uppercase;">View Gallery</button>
+        </div>
+    </section>
+
+    <section id="news" style="background: #fafafa;">
+        <div class="section-title">
+            <h2>News & Articles</h2>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px;">
+            <article>
+                <h3 style="font-family: 'Poppins'; font-weight: 600;">The Future of Sustainable Silk</h3>
+                <p style="font-size: 0.8rem; color: #999; margin: 10px 0;">Oct 12, 2024</p>
+                <p style="color: #444;">How we are sourcing materials that respect the planet without compromising on luxury...</p>
+            </article>
+            <article>
+                <h3 style="font-family: 'Poppins'; font-weight: 600;">Backstage at Paris</h3>
+                <p style="font-size: 0.8rem; color: #999; margin: 10px 0;">Sept 28, 2024</p>
+                <p style="color: #444;">An exclusive look into the chaos and beauty behind the world's most famous runway...</p>
+            </article>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="contact-container">
+            <div class="contact-info">
+                <h2>Get In <br>Touch</h2>
+                <p>For collaborations, press inquiries, or private fittings, please reach out to our studio.</p>
+                <div class="contact-details">
+                    <span>STU. 05 PARIS</span>
+                    <span>CONTACT@SELECTFASHION.COM</span>
+                </div>
+            </div>
+            
+            <form class="contact-form">
+                <div class="input-group">
+                    <input type="text" required>
+                    <label>Full Name</label>
+                </div>
+                <div class="input-group">
+                    <input type="email" required>
+                    <label>Email Address</label>
+                </div>
+                <div class="input-group">
+                    <textarea required></textarea>
+                    <label>Your Message</label>
+                </div>
+                <button type="submit" class="submit-btn">
+                    Send Inquiry <i class="ri-arrow-right-up-line"></i>
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <div class="cursor-dot" aria-hidden="true"></div>
+    <div class="cursor-outline" aria-hidden="true"></div>
+
+    <audio id="bg-music" loop src="./your-fashion-track.mp3"></audio>
+
+    <div id="music-toggle" role="button" aria-pressed="false" tabindex="0">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <span class="music-text">Sound Off</span>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/gh/automat/controlkit.js@master/bin/controlKit.min.js"></script>
+    <script type="module">
+        import WebGLFluid from 'https://cdn.skypack.dev/webgl-fluid';
+
+        const fluidCanvas = document.querySelector('#fluid');
+        
+        WebGLFluid(fluidCanvas, {
+            IMMEDIATE: true,
+            TRIGGER: 'hover',
+            SIM_RESOLUTION: 128,
+            DYE_RESOLUTION: 1024,
+            DENSITY_DISSIPATION: 2.5,
+            VELOCITY_DISSIPATION: 1.5,
+            PRESSURE: 0.8,
+            CURL: 10,
+            SPLAT_RADIUS: 0.2,
+            SHADING: true,
+            TRANSPARENT: true,
+            COLORFUL: false, 
+            COLOR_UPDATE_SPEED: 5,
+            PAUSED: false,
+            BACK_COLOR: { r: 0, g: 0, b: 0 },
+            onSplat: (input) => {
+                const luxuryColors = [
+                    { r: 0.8, g: 0.6, b: 0.2 },
+                    { r: 1.0, g: 0.27, b: 0 },
+                    { r: 0.1, g: 0.1, b: 0.1 }
+                ];
+                return luxuryColors[Math.floor(Math.random() * luxuryColors.length)];
+            }
+        });
+    </script>
+
+    <!-- Cursor + Micro-interaction Script -->
+    <script>
+    (function() {
+        // Respect reduced motion: do not enable fancy cursor if user prefers reduced motion
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (reduceMotion) {
+            // If reduced motion is preferred, show regular cursor and exit
+            document.documentElement.classList.add('reduced-motion');
+            return;
+        }
+
+        const dot = document.querySelector('.cursor-dot');
+        const outline = document.querySelector('.cursor-outline');
+        const body = document.body;
+        const audio = document.getElementById('bg-music');
+        const musicToggle = document.getElementById('music-toggle');
+        const musicText = musicToggle?.querySelector('.music-text');
+
+        // If cursor elements are missing, no-op
+        if (!dot || !outline) return;
+
+        // initial positions
+        let mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+        let outlinePos = { x: mouse.x, y: mouse.y };
+
+        const lerp = (a, b, n) => (1 - n) * a + n * b;
+
+        // Quickly update small dot
+        window.addEventListener('pointermove', (e) => {
+            mouse.x = e.clientX;
+            mouse.y = e.clientY;
+
+            // show dot immediately
+            dot.style.transform = `translate3d(${mouse.x}px, ${mouse.y}px, 0)`;
+        });
+
+        // Lagging outline with requestAnimationFrame
+        let rafId;
+        const animateOutline = () => {
+            outlinePos.x = lerp(outlinePos.x, mouse.x, 0.12);
+            outlinePos.y = lerp(outlinePos.y, mouse.y, 0.12);
+            outline.style.transform = `translate3d(${outlinePos.x}px, ${outlinePos.y}px, 0)`;
+            rafId = requestAnimationFrame(animateOutline);
+        };
+        animateOutline();
+
+        // Click/tap feedback
+        window.addEventListener('pointerdown', () => {
+            dot.classList.add('cursor-click');
+            outline.classList.add('cursor-click-outline');
+        });
+        window.addEventListener('pointerup', () => {
+            dot.classList.remove('cursor-click');
+            outline.classList.remove('cursor-click-outline');
+        });
+
+        // Hide custom cursor on form fields to allow native caret & selection
+        const inputSelectors = 'input, textarea, [contenteditable="true"], select';
+        document.querySelectorAll(inputSelectors).forEach(el => {
+            el.addEventListener('mouseenter', () => body.classList.add('cursor-hidden'));
+            el.addEventListener('focus', () => body.classList.add('cursor-hidden'));
+            el.addEventListener('mouseleave', () => body.classList.remove('cursor-hidden'));
+            el.addEventListener('blur', () => body.classList.remove('cursor-hidden'));
+        });
+
+        // Add hover state when pointer over interactive elements
+        const interactive = 'a, button, .port-item, .submit-btn, #arrow, .music-text, [role="button"], [data-cursor-hover]';
+        document.querySelectorAll(interactive).forEach(el => {
+            el.addEventListener('pointerenter', () => body.classList.add('cursor-hover'));
+            el.addEventListener('pointerleave', () => body.classList.remove('cursor-hover'));
+            // keyboard accessibility: also change on focus and blur
+            el.addEventListener('focus', () => body.classList.add('cursor-hover'));
+            el.addEventListener('blur', () => body.classList.remove('cursor-hover'));
+        });
+
+        // Keyboard: show outline when focusing via keyboard
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Tab') body.classList.add('show-focus');
+        });
+
+        // Hide custom cursor if window blurs (e.g., user switches tab)
+        window.addEventListener('blur', () => body.classList.add('cursor-hidden'));
+        window.addEventListener('focus', () => body.classList.remove('cursor-hidden'));
+
+        // Music toggle: control audio + visual bars
+        if (musicToggle && audio) {
+            const setPlaying = (playing) => {
+                musicToggle.classList.toggle('playing', playing);
+                musicToggle.setAttribute('aria-pressed', playing ? 'true' : 'false');
+                if (musicText) musicText.textContent = playing ? 'Sound On' : 'Sound Off';
+            };
+
+            musicToggle.addEventListener('click', () => {
+                if (audio.paused) {
+                    audio.play().catch(()=>{}); // ignore play errors
+                    setPlaying(true);
+                } else {
+                    audio.pause();
+                    setPlaying(false);
+                }
+            });
+            // keyboard support
+            musicToggle.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    musicToggle.click();
+                }
+            });
+        }
+
+        // cleanup on unload
+        window.addEventListener('unload', () => {
+            cancelAnimationFrame(rafId);
+        });
+    })();
+    </script>
+
+    <noscript>
+        <style>
+            /* Ensure site remains usable if JS is disabled */
+            .cursor-dot, .cursor-outline { display: none; }
+        </style>
+    </noscript>
+</body>
+</html>

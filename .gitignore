@@ -1,0 +1,35 @@
+# Node (if used)
+node_modules/
+npm-debug.log*
+yarn-error.log
+pnpm-debug.log
+
+# Build output
+dist/
+build/
+.cache/
+.parcel-cache/
+.vite/
+
+# OS / Editor
+.DS_Store
+Thumbs.db
+*.log
+*.env
+.env.local
+.env.*.local
+
+# IDEs
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# Misc
+coverage/
+*.tgz
+*.zip
+*.gz
+/.history
